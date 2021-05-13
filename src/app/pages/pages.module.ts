@@ -7,5 +7,4 @@ import { LoginModule } from './login/login.module';
   imports: [CommonModule, LoginModule],
   exports: [LoginModule],
 })
-export class PagesModule {
-}
+export class PagesModule {}
