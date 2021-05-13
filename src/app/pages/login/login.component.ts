@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserRole } from '../../../mocels/user-role';
+import { UserRole } from '../../../models/user-role';
 
 @Component({
   selector: 'app-login',
