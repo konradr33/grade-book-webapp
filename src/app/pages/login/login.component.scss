@@ -1,7 +1,8 @@
 :host {
   display: block;
-  padding: 50px;
   background-color: lightgray;
+  height: 100%;
+  overflow: auto;
 }
 
 mat-card {
@@ -9,7 +10,7 @@ mat-card {
   flex-direction: column;
   align-items: center;
   max-width: 500px;
-  margin: auto;
+  margin: 75px auto;
   overflow: auto;
 
   > *:not(:last-child) {
