@@ -9,10 +9,21 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { FooterComponent } from './footer/footer.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
+import { GradeComponent } from './grade/grade.component';
+import { SubjectComponent } from './subject/subject.component';
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
-  declarations: [HeaderComponent, LayoutComponent, FooterComponent, SidenavComponent],
-  imports: [CommonModule, MatToolbarModule, MatButtonModule, MatIconModule, MatCardModule, MatSidenavModule],
-  exports: [LayoutComponent],
+  declarations: [HeaderComponent, LayoutComponent, FooterComponent, SidenavComponent, GradeComponent, SubjectComponent],
+  imports: [
+    CommonModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCardModule,
+    MatSidenavModule,
+    MatRippleModule,
+  ],
+  exports: [LayoutComponent, SubjectComponent, GradeComponent],
 })
 export class SharedModule {}

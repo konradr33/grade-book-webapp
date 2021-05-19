@@ -1,9 +1,5 @@
-<div class="wrapper">
-  <h1>Subjects</h1>
+<h1>Subjects</h1>
 
-  <div class="subjects-wrapper">
-    <mat-card *ngFor="let subject of subjects" (click)="onSubjectClicked(subject)">
-      <mat-card-title>{{ subject.name }} </mat-card-title>
-    </mat-card>
-  </div>
+<div class="subjects-wrapper">
+  <app-subject *ngFor="let subject of subjects" (click)="onSubjectClicked(subject)" [subject]="subject"></app-subject>
 </div>

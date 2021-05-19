@@ -27,7 +27,6 @@ export class LoginComponent {
 
   public onLoginSubmit(): void {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
       this.authService.loginUser(this.loginForm.value['login'], this.loginForm.value['password']).subscribe(
         () => {
           this.router.navigate(['/home']);

@@ -1,0 +1,10 @@
+@import 'src/styles/variables';
+
+mat-card {
+  background-color: $primary;
+  color: white;
+
+  mat-card-subtitle {
+    color: white;
+  }
+}
