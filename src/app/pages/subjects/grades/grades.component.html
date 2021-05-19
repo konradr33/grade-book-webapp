@@ -1,0 +1,9 @@
+<div class="wrapper">
+  <h1>List of your grades</h1>
+
+  <div class="grades-wrapper">
+    <mat-card *ngFor="let grade of grades">
+      <mat-card-title>{{ grade.grade }} </mat-card-title>
+    </mat-card>
+  </div>
+</div>

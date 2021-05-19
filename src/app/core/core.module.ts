@@ -6,7 +6,6 @@ import { GradesService } from './grades/grades.service';
 import { AuthService } from './auth/auth.service';
 import { JwtInterceptor } from './interceptor/http.interceptor';
 import { ToastService } from './toast/toast.service';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -22,6 +21,6 @@ import { ToastrModule } from 'ngx-toastr';
       multi: true,
     },
   ],
-  imports: [CommonModule, HttpClientModule, ToastrModule.forRoot()],
+  imports: [CommonModule, HttpClientModule, ToastrModule.forRoot({ positionClass: 'toast-bottom-right' })],
 })
 export class CoreModule {}

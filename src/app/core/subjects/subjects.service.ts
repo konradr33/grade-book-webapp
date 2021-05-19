@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Subject } from '../../../models/subject';
 import { getApiContext } from '../../utils/api-path';
 import { AuthService } from '../auth/auth.service';

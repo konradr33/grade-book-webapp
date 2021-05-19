@@ -1,24 +1,8 @@
-:host {
+form {
   display: flex;
   flex-direction: column;
-  background-color: lightgray;
-  height: 100%;
-  overflow: auto;
-  justify-content: center;
-  align-items: center;
-}
 
-mat-card {
-  width: 500px;
-  overflow: auto;
-
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    > *:not(:last-child) {
-      margin-bottom: 20px;
-    }
+  > *:not(:last-child) {
+    margin-bottom: 20px;
   }
 }

@@ -1,19 +1,17 @@
-<mat-card [formGroup]="loginForm">
-  <form>
-    <h1>Login</h1>
+<form [formGroup]="loginForm">
+  <h1>Login</h1>
 
-    <mat-form-field>
-      <mat-label>Login</mat-label>
-      <input matInput required formControlName="login" />
-      <mat-error>Field is required</mat-error>
-    </mat-form-field>
+  <mat-form-field>
+    <mat-label>Login</mat-label>
+    <input matInput required formControlName="login" />
+    <mat-error>Field is required</mat-error>
+  </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Password</mat-label>
-      <input matInput required formControlName="password" type="password" />
-      <mat-error>Field is required</mat-error>
-    </mat-form-field>
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput required formControlName="password" type="password" />
+    <mat-error>Field is required</mat-error>
+  </mat-form-field>
 
-    <button mat-raised-button color="primary" (click)="onLoginSubmit()">Login</button>
-  </form>
-</mat-card>
+  <button mat-raised-button color="primary" (click)="onLoginSubmit()">Login</button>
+</form>

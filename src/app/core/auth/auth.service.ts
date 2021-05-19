@@ -7,13 +7,14 @@ import { tap } from 'rxjs/operators';
 import { LoginResponse } from '../../../models/login-response';
 import { Router } from '@angular/router';
 import { UserRole } from '../../../models/user-role';
+import { ToastService } from '../toast/toast.service';
 
 @Injectable()
 export class AuthService {
   private readonly _user$: BehaviorSubject<User | undefined>;
   private readonly _jwtToken$: BehaviorSubject<string | undefined>;
 
-  constructor(private http: HttpClient, private readonly router: Router) {
+  constructor(private http: HttpClient, private readonly router: Router, private readonly toastService: ToastService) {
     this._user$ = new BehaviorSubject<User | undefined>(undefined);
     this._jwtToken$ = new BehaviorSubject<string | undefined>(undefined);
   }
@@ -31,6 +32,7 @@ export class AuthService {
     this._user$.next(undefined);
     this._jwtToken$.next(undefined);
     this.router.navigate(['/login']);
+    this.toastService.openSuccessToast({ title: 'Success', message: 'Logged out' });
   }
 
   public isLoggedIn(): boolean {

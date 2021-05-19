@@ -1,0 +1,24 @@
+:host {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+mat-sidenav-container {
+  flex-grow: 1;
+  background-color: lightgray;
+}
+
+mat-sidenav {
+  border-right: none !important;
+}
+
+mat-icon {
+  margin-right: 10px;
+}
+
+mat-card {
+  margin: 20px;
+  padding: 20px;
+}
