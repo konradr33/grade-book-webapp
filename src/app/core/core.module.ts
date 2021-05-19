@@ -7,6 +7,7 @@ import { AuthService } from './auth/auth.service';
 import { JwtInterceptor } from './interceptor/http.interceptor';
 import { ToastService } from './toast/toast.service';
 import { ToastrModule } from 'ngx-toastr';
+import { AuthResponseInterceptor } from './interceptor/auth-response.interceptor';
 
 @NgModule({
   declarations: [],
@@ -18,6 +19,11 @@ import { ToastrModule } from 'ngx-toastr';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthResponseInterceptor,
       multi: true,
     },
   ],

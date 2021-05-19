@@ -17,6 +17,16 @@ export class AuthService {
   constructor(private http: HttpClient, private readonly router: Router, private readonly toastService: ToastService) {
     this._user$ = new BehaviorSubject<User | undefined>(undefined);
     this._jwtToken$ = new BehaviorSubject<string | undefined>(undefined);
+    const token = localStorage.getItem('jwt');
+
+    if (token) {
+      this._jwtToken$.next(token);
+      setTimeout(() => this.me().subscribe());
+      const user = localStorage.getItem('user');
+      if (user) {
+        this._user$.next(JSON.parse(user));
+      }
+    }
   }
 
   public loginUser(username: string, password: string): Observable<LoginResponse> {
@@ -24,6 +34,16 @@ export class AuthService {
       tap((res: LoginResponse) => {
         this._user$.next({ username: res.username, role: res.role });
         this._jwtToken$.next(res.token);
+        localStorage.setItem('jwt', res.token);
+        localStorage.setItem('user', JSON.stringify({ username: res.username, role: res.role }));
+      }),
+    );
+  }
+
+  public me(): Observable<{ username: string; role: UserRole }> {
+    return this.http.get<{ username: string; role: UserRole }>(environment.apiContext + 'me').pipe(
+      tap((res: { username: string; role: UserRole }) => {
+        this._user$.next({ username: res.username, role: res.role });
       }),
     );
   }
@@ -31,12 +51,14 @@ export class AuthService {
   public logout(): void {
     this._user$.next(undefined);
     this._jwtToken$.next(undefined);
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('user');
     this.router.navigate(['/login']);
     this.toastService.openSuccessToast({ title: 'Success', message: 'Logged out' });
   }
 
   public isLoggedIn(): boolean {
-    return !!this._user$.value;
+    return !!this._jwtToken$.value;
   }
 
   public getUser$(): Observable<User | undefined> {

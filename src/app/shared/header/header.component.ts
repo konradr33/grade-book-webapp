@@ -8,6 +8,7 @@ import { AuthService } from '../../core/auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
   @Output() toggleSidenav = new EventEmitter<void>();
+
   constructor(public authService: AuthService) {}
 
   ngOnInit(): void {}

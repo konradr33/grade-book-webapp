@@ -1,5 +1,7 @@
-  <h1>List of your grades</h1>
+<h1>List of your grades</h1>
 
-  <div class="grades-wrapper">
-    <app-grade *ngFor="let grade of grades" [grade]="grade"> </app-grade>
-  </div>
+<div class="grades-wrapper">
+  <app-grade *ngFor="let grade of grades" [grade]="grade"></app-grade>
+</div>
+
+<app-grade-form [initialValue]="grades[0]"></app-grade-form>

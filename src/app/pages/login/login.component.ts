@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserRole } from '../../../models/user-role';
 import { AuthService } from '../../core/auth/auth.service';
 import { Router } from '@angular/router';
 import { ToastService } from '../../core/toast/toast.service';

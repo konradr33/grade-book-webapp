@@ -12,18 +12,35 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { GradeComponent } from './grade/grade.component';
 import { SubjectComponent } from './subject/subject.component';
 import { MatRippleModule } from '@angular/material/core';
+import { SubjectFormComponent } from './subject-form/subject-form.component';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { GradeFormComponent } from './grade-form/grade-form.component';
 
 @NgModule({
-  declarations: [HeaderComponent, LayoutComponent, FooterComponent, SidenavComponent, GradeComponent, SubjectComponent],
+  declarations: [
+    HeaderComponent,
+    LayoutComponent,
+    FooterComponent,
+    SidenavComponent,
+    GradeComponent,
+    SubjectComponent,
+    SubjectFormComponent,
+    GradeFormComponent,
+  ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
     MatCardModule,
     MatSidenavModule,
     MatRippleModule,
+    MatInputModule,
+    MatSelectModule,
   ],
-  exports: [LayoutComponent, SubjectComponent, GradeComponent],
+  exports: [LayoutComponent, SubjectComponent, GradeComponent, SubjectFormComponent, GradeFormComponent],
 })
 export class SharedModule {}

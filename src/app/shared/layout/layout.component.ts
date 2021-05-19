@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
-import { debounceTime, map } from 'rxjs/operators';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-layout',

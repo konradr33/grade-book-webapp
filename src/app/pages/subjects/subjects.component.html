@@ -3,3 +3,5 @@
 <div class="subjects-wrapper">
   <app-subject *ngFor="let subject of subjects" (click)="onSubjectClicked(subject)" [subject]="subject"></app-subject>
 </div>
+
+<app-subject-form [initialValue]="subjects[0]"></app-subject-form>

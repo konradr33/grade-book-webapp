@@ -1,0 +1,25 @@
+<form [formGroup]="formGroup" (ngSubmit)="onFormSubmit()">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput required formControlName="name" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <input matInput required formControlName="description" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Students</mat-label>
+    <mat-select multiple required formControlName="students">
+      <mat-option value="user1"> user1</mat-option>
+      <mat-option value="user1"> user2</mat-option>
+      <mat-option value="user1"> user3</mat-option>
+      <mat-option value="user1"> user4</mat-option>
+      <mat-option value="user1"> user5</mat-option>
+      <mat-option value="user1"> user6</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary">Submit</button>
+</form>

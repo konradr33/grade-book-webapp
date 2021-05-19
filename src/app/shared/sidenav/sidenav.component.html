@@ -1,18 +1,30 @@
 <div class="column-container">
   <ng-container *ngIf="authService.isLoggedIn()">
     <button mat-button (click)="redirectTo('home')">
-      <div class="button-content-wrapper"><mat-icon>home</mat-icon>Home</div>
+      <div class="button-content-wrapper">
+        <mat-icon>home</mat-icon>
+        Home
+      </div>
     </button>
     <button mat-button (click)="redirectTo('subjects')">
-      <div class="button-content-wrapper"><mat-icon>subject</mat-icon>Subjects</div>
+      <div class="button-content-wrapper">
+        <mat-icon>subject</mat-icon>
+        Subjects
+      </div>
     </button>
     <button mat-button (click)="authService.logout()">
-      <div class="button-content-wrapper"><mat-icon>logout</mat-icon>Logout</div>
+      <div class="button-content-wrapper">
+        <mat-icon>logout</mat-icon>
+        Logout
+      </div>
     </button>
   </ng-container>
   <ng-container *ngIf="!authService.isLoggedIn()">
     <button mat-button (click)="redirectTo('login')">
-      <div class="button-content-wrapper"><mat-icon>login</mat-icon>Login</div>
+      <div class="button-content-wrapper">
+        <mat-icon>login</mat-icon>
+        Login
+      </div>
     </button>
   </ng-container>
 </div>
