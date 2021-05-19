@@ -1,23 +1,19 @@
 <mat-card [formGroup]="loginForm">
-  <h1>Login</h1>
+  <form>
+    <h1>Login</h1>
 
-  <mat-form-field>
-    <mat-label>Login</mat-label>
-    <input matInput required formControlName="login" />
-    <mat-error>Field is required</mat-error>
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Login</mat-label>
+      <input matInput required formControlName="login" />
+      <mat-error>Field is required</mat-error>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Password</mat-label>
-    <input matInput required formControlName="password" />
-    <mat-error>Field is required</mat-error>
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput required formControlName="password" type="password" />
+      <mat-error>Field is required</mat-error>
+    </mat-form-field>
 
-  <mat-button-toggle-group formControlName="role">
-    <mat-button-toggle value="admin">Admin</mat-button-toggle>
-    <mat-button-toggle value="teacher">Teacher</mat-button-toggle>
-    <mat-button-toggle value="student">Student</mat-button-toggle>
-  </mat-button-toggle-group>
-
-  <button mat-raised-button color="primary" (click)="onLoginSubmit()">Login</button>
+    <button mat-raised-button color="primary" (click)="onLoginSubmit()">Login</button>
+  </form>
 </mat-card>

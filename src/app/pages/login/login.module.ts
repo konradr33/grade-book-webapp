@@ -4,13 +4,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 import { LoginComponent } from './login.component';
+import { CoreModule } from '../../core/core.module';
 
 @NgModule({
   declarations: [LoginComponent],
-  imports: [CommonModule, ReactiveFormsModule, MatButtonModule, MatCardModule, MatInputModule, MatButtonToggleModule],
+  imports: [CommonModule, CoreModule, ReactiveFormsModule, MatButtonModule, MatCardModule, MatInputModule],
   exports: [LoginComponent],
 })
 export class LoginModule {}

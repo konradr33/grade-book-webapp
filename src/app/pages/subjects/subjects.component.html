@@ -1,0 +1,9 @@
+<div class='wrapper'>
+  <h1>List of your subjects</h1>
+
+  <div class="subjects-wrapper">
+    <mat-card *ngFor="let subject of subjects" (click)="onSubjectClicked(subject)">
+      <mat-card-title>{{ subject.name }} </mat-card-title>
+    </mat-card>
+  </div>
+</div>
