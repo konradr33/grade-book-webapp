@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject } from '../../../models/subject';
+import { SubjectDto } from '../../../models/subject.dto';
 
 @Component({
   selector: 'app-subject-form',
@@ -8,7 +9,7 @@ import { Subject } from '../../../models/subject';
   styleUrls: ['./subject-form.component.scss'],
 })
 export class SubjectFormComponent {
-  @Output() formSubmit = new EventEmitter<Partial<Subject>>();
+  @Output() formSubmit = new EventEmitter<SubjectDto>();
 
   @Input() set initialValue(value: Subject) {
     if (!value) return;

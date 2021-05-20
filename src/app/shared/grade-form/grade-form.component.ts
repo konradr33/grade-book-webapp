@@ -8,7 +8,7 @@ import { Grade } from '../../../models/grade';
   styleUrls: ['./grade-form.component.scss'],
 })
 export class GradeFormComponent {
-  @Output() formSubmit = new EventEmitter<Partial<Grade>>();
+  @Output() formSubmit = new EventEmitter<{ grade: string; description: string }>();
 
   @Input() set initialValue(value: Grade) {
     if (!value) return;

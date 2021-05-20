@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Subject } from '../../../models/subject';
 import { SubjectsService } from '../../core/subjects/subjects.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../core/auth/auth.service';
+import { ToastService } from '../../core/toast/toast.service';
+import { SubjectDto } from '../../../models/subject.dto';
 
 @Component({
   selector: 'app-subjects',
@@ -11,7 +14,12 @@ import { Router } from '@angular/router';
 export class SubjectsComponent implements OnInit {
   public subjects: Subject[] = [];
 
-  constructor(private router: Router, private subjectsService: SubjectsService) {}
+  constructor(
+    public authService: AuthService,
+    private router: Router,
+    private subjectsService: SubjectsService,
+    private toastService: ToastService,
+  ) {}
 
   ngOnInit(): void {
     this.subjectsService.getUserSubjects().subscribe((subjects: Subject[]) => {
@@ -21,5 +29,17 @@ export class SubjectsComponent implements OnInit {
 
   onSubjectClicked(subject: Subject) {
     this.router.navigate(['subjects', subject.ID]);
+  }
+
+  onSubjectCreate(subject: SubjectDto) {
+    this.subjectsService.createNew(subject).subscribe(
+      (created) => {
+        this.toastService.openSuccessToast({ title: 'Success', message: `Successfully created ${created.name}` });
+      },
+      (err) => {
+        console.error('Error creating new subject: ', err);
+        this.toastService.openSuccessToast({ title: 'Error', message: 'Could not create subject' });
+      },
+    );
   }
 }

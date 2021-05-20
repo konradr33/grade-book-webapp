@@ -4,4 +4,7 @@
   <app-grade *ngFor="let grade of grades" [grade]="grade"></app-grade>
 </div>
 
-<app-grade-form [initialValue]="grades[0]"></app-grade-form>
+<ng-container *ngIf="(authService.getUser$() | async)?.role === 'teacher'">
+  <h1>Create new</h1>
+  <app-grade-form (formSubmit)="onGradeCreate($event)"> </app-grade-form>
+</ng-container>
