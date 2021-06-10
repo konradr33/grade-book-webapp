@@ -1,12 +1,16 @@
 <mat-card>
   <mat-card-title>
     {{ subject.name }}
-    <button (click)='onMenuClicked($event)' *ngIf="showActions" [matMenuTriggerFor]="menu" mat-icon-button>
+    <button (click)="onMenuClicked($event)" *ngIf="showActions" [matMenuTriggerFor]="menu" mat-icon-button>
       <mat-icon>more_vert</mat-icon>
     </button>
   </mat-card-title>
   <mat-card-subtitle>{{ subject.description }}</mat-card-subtitle>
-  <mat-card-content>participants: {{ subject.students.length }}</mat-card-content>
+  <mat-card-content
+    >participants: {{ subject.students.length }}
+    <span>Last updated: {{ subject.updatedAt | date }}</span>
+    <span>Created: {{ subject.createdAt | date }}</span>
+  </mat-card-content>
 </mat-card>
 
 <mat-menu #menu>
