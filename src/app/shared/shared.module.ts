@@ -17,6 +17,9 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { GradeFormComponent } from './grade-form/grade-form.component';
+import { RouterModule } from '@angular/router';
+import { CoreModule } from '../core/core.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,7 @@ import { GradeFormComponent } from './grade-form/grade-form.component';
   ],
   imports: [
     CommonModule,
+    CoreModule,
     ReactiveFormsModule,
     MatToolbarModule,
     MatButtonModule,
@@ -40,6 +44,8 @@ import { GradeFormComponent } from './grade-form/grade-form.component';
     MatRippleModule,
     MatInputModule,
     MatSelectModule,
+    RouterModule,
+    MatDialogModule,
   ],
   exports: [LayoutComponent, SubjectComponent, GradeComponent, SubjectFormComponent, GradeFormComponent],
 })

@@ -7,10 +7,21 @@ import { GradesComponent } from './grades/grades.component';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from '../../shared/shared.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [SubjectsComponent, GradesComponent],
-  imports: [CommonModule, SharedModule, MatCardModule, MatRippleModule, MatButtonModule, MatPaginatorModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    MatCardModule,
+    MatRippleModule,
+    MatButtonModule,
+    MatPaginatorModule,
+    MatDialogModule,
+    MatIconModule,
+  ],
   exports: [SubjectsComponent],
 })
 export class SubjectsModule {}

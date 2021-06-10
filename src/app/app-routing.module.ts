@@ -5,6 +5,7 @@ import { SubjectsComponent } from './pages/subjects/subjects.component';
 import { GradesComponent } from './pages/subjects/grades/grades.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AuthGuard } from './core/auth/auth.guard';
+import { GradeHistoryComponent } from './pages/grades/grade-history/grade-history.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'subjects', component: SubjectsComponent, canActivate: [AuthGuard] },
   { path: 'subjects/:id', component: GradesComponent, canActivate: [AuthGuard] },
+  { path: 'grades/:id/history', component: GradeHistoryComponent },
   { path: '**', redirectTo: 'login' },
 ];
 

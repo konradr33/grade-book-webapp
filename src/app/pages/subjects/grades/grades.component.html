@@ -1,10 +1,28 @@
-<h1>List of your grades</h1>
+<ng-container *ngIf="grades && subject; else Loading">
+  <div *ngIf="(authService.getUser$() | async)?.role === 'student'">
+    <h1>List of your grades</h1>
+    <div class="grades-wrapper">
+      <app-grade *ngFor="let grade of grades" [grade]="grade"></app-grade>
+    </div>
+  </div>
 
-<div class="grades-wrapper">
-  <app-grade *ngFor="let grade of grades" [grade]="grade"></app-grade>
-</div>
+  <div *ngIf="(authService.getUser$() | async)?.role === 'teacher'">
+    <h1>List of students grades</h1>
 
-<ng-container *ngIf="(authService.getUser$() | async)?.role === 'teacher'">
-  <h1>Create new</h1>
-  <app-grade-form (formSubmit)="onGradeCreate($event)"> </app-grade-form>
+    <div *ngFor="let student of subject.students">
+      <span class="student-name">{{ student }}</span>
+
+      <button mat-icon-button color="primary" (click)="onAddGrade(student)"><mat-icon>add</mat-icon></button>
+
+      <div class="grades-wrapper" *ngIf="getStudentGrades(student) as students">
+        <app-grade (modify)="onGradeChange(grade)" *ngFor="let grade of students" [grade]="grade"></app-grade>
+
+        <div *ngIf="students.length === 0">No grades yet</div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="grades.length === 0">No grades in this subject or grades not available.</div>
 </ng-container>
+
+<ng-template #Loading> Loading data </ng-template>

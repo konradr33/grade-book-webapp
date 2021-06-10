@@ -1,0 +1,7 @@
+<h1>History of a grade</h1>
+
+<div class="grades-wrapper">
+  <app-grade *ngFor="let grade of history" [grade]="grade" [showActions]="false"></app-grade>
+</div>
+
+<div *ngIf="history.length === 0">History is not available or asset does not exist.</div>

@@ -31,6 +31,16 @@ export class SubjectsService {
     );
   }
 
+  public getSubject(subjectID: string): Observable<Subject> {
+    const role = this.authService.getCurrentRole();
+    if (!role) {
+      this.authService.logout();
+      throw new Error('Could not get user role');
+    }
+
+    return this.http.get<Subject>(getApiContext(role!, 'subjects/' + subjectID));
+  }
+
   public createNew(subject: SubjectDto): Observable<Subject> {
     const role = this.authService.getCurrentRole();
     if (!role) {
