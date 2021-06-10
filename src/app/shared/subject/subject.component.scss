@@ -8,6 +8,10 @@ mat-card {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+
+    *:first-child {
+      flex-shrink: 1;
+    }
   }
 
   mat-card-subtitle {
@@ -17,5 +21,9 @@ mat-card {
   mat-card-content {
     display: flex;
     flex-direction: column;
+  }
+
+  > * {
+    overflow-wrap: anywhere;
   }
 }

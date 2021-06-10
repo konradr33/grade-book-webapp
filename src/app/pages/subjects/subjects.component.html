@@ -1,9 +1,9 @@
-<h1>Subjects</h1>
-<button (click)="onSubjectCreate()" *ngIf="(authService.getUser$() | async)?.role === 'teacher'" mat-icon-button>
-  <mat-icon>add</mat-icon>
-</button>
-
-
+<div class="flex-container">
+  <h1>Subjects</h1>
+  <button (click)="onSubjectCreate()" *ngIf="(authService.getUser$() | async)?.role === 'teacher'" mat-icon-button>
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
 
 <div class="subjects-wrapper">
   <app-subject
