@@ -1,0 +1,8 @@
+.subjects-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  app-subject {
+    margin: 10px 0;
+  }
+}

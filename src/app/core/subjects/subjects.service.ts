@@ -8,6 +8,7 @@ import { getApiContext } from '../../utils/api-path';
 import { AuthService } from '../auth/auth.service';
 import { SubjectDto } from '../../../models/subject.dto';
 import { environment } from '../../../environments/environment';
+import { Grade } from '../../../models/grade';
 
 @Injectable()
 export class SubjectsService {
@@ -55,5 +56,15 @@ export class SubjectsService {
 
   public updateSubject(subject: Subject): Observable<Subject> {
     return this.http.put<Subject>(environment.apiContext + `teachers/subjects/${subject.ID}`, subject);
+  }
+
+  getSubjectHistory(subjectID: string): Observable<Subject[]> {
+    const role = this.authService.getCurrentRole();
+    if (!role) {
+      this.authService.logout();
+      throw new Error('Could not get user role');
+    }
+
+    return this.http.get<Subject[]>(getApiContext(role!, 'subjects/' + subjectID + '/history'));
   }
 }

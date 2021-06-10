@@ -13,7 +13,7 @@
   <div mat-dialog-actions>
     <button mat-raised-button [mat-dialog-close]>Cancel</button>
     <button mat-raised-button [disabled]="!formGroup.valid" color="primary" [mat-dialog-close]="formGroup.value">
-      Submit
+      {{ editMode ? 'Edit' : 'Create' }}
     </button>
   </div>
 </form>

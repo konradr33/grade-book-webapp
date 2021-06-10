@@ -3,9 +3,7 @@
   grid-gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 
-  mat-card {
-    background-color: #673ab7;
-    color: #fff;
+  app-subject {
     cursor: pointer;
   }
 }

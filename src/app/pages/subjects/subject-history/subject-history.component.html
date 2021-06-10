@@ -1,1 +1,7 @@
-<p>subject-history works!</p>
+<h1>History of a subject</h1>
+
+<div class="subjects-wrapper">
+  <app-subject *ngFor="let subject of history" [showActions]="false" [subject]="subject"></app-subject>
+</div>
+
+<div *ngIf="history.length === 0">History is not available or asset does not exist.</div>
