@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
 import { Subject } from '../../../models/subject';
 import { getApiContext } from '../../utils/api-path';
 import { AuthService } from '../auth/auth.service';
-import { tap } from 'rxjs/operators';
 import { SubjectDto } from '../../../models/subject.dto';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class SubjectsService {
@@ -14,10 +16,6 @@ export class SubjectsService {
   constructor(private authService: AuthService, private http: HttpClient) {}
 
   public getUserSubjects(): Observable<Subject[]> {
-    if (this._subjects$.value.length > 0) {
-      return this._subjects$.asObservable();
-    }
-
     const role = this.authService.getCurrentRole();
     if (!role) {
       this.authService.logout();
@@ -53,5 +51,9 @@ export class SubjectsService {
         this._subjects$.next([...this._subjects$.value, created]);
       }),
     );
+  }
+
+  public updateSubject(subject: Subject): Observable<Subject> {
+    return this.http.put<Subject>(environment.apiContext + `teachers/subjects/${subject.ID}`, subject);
   }
 }

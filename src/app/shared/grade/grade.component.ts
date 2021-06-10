@@ -1,5 +1,5 @@
 import { EventEmitter } from '@angular/core';
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { Grade } from '../../../models/grade';
 import { AuthService } from '../../core/auth/auth.service';
 
@@ -8,15 +8,13 @@ import { AuthService } from '../../core/auth/auth.service';
   templateUrl: './grade.component.html',
   styleUrls: ['./grade.component.scss'],
 })
-export class GradeComponent implements OnInit {
+export class GradeComponent {
   @Input() grade: Grade;
   @Input() showActions: boolean = true;
 
   @Output() modify: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(public readonly authService: AuthService) {}
-
-  ngOnInit(): void {}
 
   onModifyClicked(event: MouseEvent) {
     event.stopPropagation();

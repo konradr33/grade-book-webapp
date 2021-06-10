@@ -9,9 +9,10 @@ import { SharedModule } from '../../shared/shared.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { SubjectHistoryComponent } from './subject-history/subject-history.component';
 
 @NgModule({
-  declarations: [SubjectsComponent, GradesComponent],
+  declarations: [SubjectsComponent, GradesComponent, SubjectHistoryComponent],
   imports: [
     CommonModule,
     SharedModule,

@@ -43,20 +43,24 @@ export class GradesComponent implements OnInit {
     }
   }
 
-  public onGradeCreate(grade: { grade: string; description: string }) {
-    this.gradesService.createNew(this.subjectID, { ...grade, studentName: 'user1' }).subscribe(
-      (created) => {
-        this.toastService.openSuccessToast({ title: 'Success', message: `Successfully added grade` });
+  public onGradeCreate(studentLogin: string) {
+    const dialogRef = this.dialog.open(GradeFormComponent);
 
-        this.gradesService.getGrades(this.subjectID).subscribe((grades: Grade[]) => {
-          this.grades = grades;
-        });
-      },
-      (err) => {
-        console.error('Error creating new grade: ', err);
-        this.toastService.openSuccessToast({ title: 'Error', message: 'Could not create grade' });
-      },
-    );
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.gradesService.createNew(this.subject.ID, { ...result, studentName: studentLogin }).subscribe(
+          () => {
+            this.toastService.openSuccessToast({ title: 'Success', message: 'Grade added' });
+            this.gradesService.getGrades(this.subjectID).subscribe((grades: Grade[]) => {
+              this.grades = grades;
+            });
+          },
+          (error) => {
+            this.toastService.openSuccessToast({ title: 'Error', message: 'Could not add grade' });
+          },
+        );
+      }
+    });
   }
 
   onGradeChange(grade: Grade) {
@@ -84,26 +88,6 @@ export class GradesComponent implements OnInit {
       const split = grade.ID.split('.');
       if (split.length < 4) return false;
       return split[2] === student;
-    });
-  }
-
-  onAddGrade(studentLogin: string) {
-    const dialogRef = this.dialog.open(GradeFormComponent);
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.gradesService.createNew(this.subject.ID, { ...result, studentName: studentLogin }).subscribe(
-          () => {
-            this.toastService.openSuccessToast({ title: 'Success', message: 'Grade added' });
-            this.gradesService.getGrades(this.subjectID).subscribe((grades: Grade[]) => {
-              this.grades = grades;
-            });
-          },
-          (error) => {
-            this.toastService.openSuccessToast({ title: 'Error', message: 'Could not add grade' });
-          },
-        );
-      }
     });
   }
 }

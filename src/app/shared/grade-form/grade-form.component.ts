@@ -11,15 +11,16 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class GradeFormComponent {
   @Output() formSubmit = new EventEmitter<{ grade: string; description: string }>();
   public formGroup: FormGroup;
+  public editMode: boolean = false;
 
   constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: Grade) {
-    console.log('data', data);
     this.formGroup = this.fb.group({
       grade: ['', [Validators.required]],
       description: ['', [Validators.required]],
     });
 
     if (!data) return;
+    this.editMode = true;
     this.formGroup.setControl('grade', new FormControl(data.grade, [Validators.required]));
     this.formGroup.setControl('description', new FormControl(data.description, [Validators.required]));
   }

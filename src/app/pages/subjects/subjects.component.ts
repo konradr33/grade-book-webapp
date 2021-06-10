@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject } from '../../../models/subject';
-import { SubjectsService } from '../../core/subjects/subjects.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+
 import { AuthService } from '../../core/auth/auth.service';
 import { ToastService } from '../../core/toast/toast.service';
 import { SubjectDto } from '../../../models/subject.dto';
+import { SubjectFormComponent } from '../../shared/subject-form/subject-form.component';
+import { Subject } from '../../../models/subject';
+import { SubjectsService } from '../../core/subjects/subjects.service';
 
 @Component({
   selector: 'app-subjects',
@@ -19,6 +22,7 @@ export class SubjectsComponent implements OnInit {
     private router: Router,
     private subjectsService: SubjectsService,
     private toastService: ToastService,
+    public dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -31,15 +35,43 @@ export class SubjectsComponent implements OnInit {
     this.router.navigate(['subjects', subject.ID]);
   }
 
-  onSubjectCreate(subject: SubjectDto) {
-    this.subjectsService.createNew(subject).subscribe(
-      (created) => {
-        this.toastService.openSuccessToast({ title: 'Success', message: `Successfully created ${created.name}` });
-      },
-      (err) => {
-        console.error('Error creating new subject: ', err);
-        this.toastService.openSuccessToast({ title: 'Error', message: 'Could not create subject' });
-      },
-    );
+  onSubjectChange(subject: Subject) {
+    const dialogRef = this.dialog.open(SubjectFormComponent, { data: subject });
+
+    dialogRef.afterClosed().subscribe((subjectDto: SubjectDto) => {
+      if (subjectDto) {
+        this.subjectsService.updateSubject({ ...subject, ...subjectDto }).subscribe(
+          () => {
+            this.toastService.openSuccessToast({ title: 'Success', message: 'Subject updated' });
+            this.subjectsService.getUserSubjects().subscribe((subjects: Subject[]) => {
+              this.subjects = subjects;
+            });
+          },
+          (error) => {
+            this.toastService.openSuccessToast({ title: 'Error', message: 'Could not update Subject' });
+          },
+        );
+      }
+    });
+  }
+
+  onSubjectCreate() {
+    const dialogRef = this.dialog.open(SubjectFormComponent);
+
+    dialogRef.afterClosed().subscribe((subjectDto: SubjectDto) => {
+      if (subjectDto) {
+        this.subjectsService.createNew(subjectDto).subscribe(
+          () => {
+            this.toastService.openSuccessToast({ title: 'Success', message: 'Subject updated' });
+            this.subjectsService.getUserSubjects().subscribe((subjects: Subject[]) => {
+              this.subjects = subjects;
+            });
+          },
+          (error) => {
+            this.toastService.openSuccessToast({ title: 'Error', message: 'Could not update Subject' });
+          },
+        );
+      }
+    });
   }
 }

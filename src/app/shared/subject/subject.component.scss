@@ -7,4 +7,22 @@ mat-card {
   mat-card-subtitle {
     color: white;
   }
+
+  mat-card-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  mat-card-footer {
+    padding: 0 16px 16px;
+
+    .buttons-wrapper {
+      display: flex;
+      margin-top: 10px;
+
+      * {
+        flex-grow: 1;
+      }
+    }
+  }
 }

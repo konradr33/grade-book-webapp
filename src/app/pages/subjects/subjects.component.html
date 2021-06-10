@@ -1,10 +1,13 @@
 <h1>Subjects</h1>
+<button (click)="onSubjectCreate()" *ngIf="(authService.getUser$() | async)?.role === 'teacher'" mat-icon-button>
+  <mat-icon>add</mat-icon>
+</button>
 
 <div class="subjects-wrapper">
-  <app-subject *ngFor="let subject of subjects" (click)="onSubjectClicked(subject)" [subject]="subject"></app-subject>
+  <app-subject
+    *ngFor="let subject of subjects"
+    (modify)="onSubjectChange(subject)"
+    (click)="onSubjectClicked(subject)"
+    [subject]="subject"
+  ></app-subject>
 </div>
-
-<ng-container *ngIf="(authService.getUser$() | async)?.role === 'teacher'">
-  <h1>Create new</h1>
-  <app-subject-form (formSubmit)="onSubjectCreate($event)"></app-subject-form>
-</ng-container>
