@@ -20,6 +20,7 @@ import { GradeFormComponent } from './grade-form/grade-form.component';
 import { RouterModule } from '@angular/router';
 import { CoreModule } from '../core/core.module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatSelectModule,
     RouterModule,
     MatDialogModule,
+    MatMenuModule,
   ],
   exports: [LayoutComponent, SubjectComponent, GradeComponent, SubjectFormComponent, GradeFormComponent],
 })

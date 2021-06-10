@@ -4,6 +4,12 @@ mat-card {
   background-color: $primary;
   color: white;
 
+  mat-card-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
   mat-card-subtitle {
     color: white;
   }
@@ -11,18 +17,5 @@ mat-card {
   mat-card-content {
     display: flex;
     flex-direction: column;
-  }
-
-  mat-card-footer {
-    padding: 0 16px 16px;
-
-    .buttons-wrapper {
-      display: flex;
-      margin-top: 10px;
-
-      * {
-        flex-grow: 1;
-      }
-    }
   }
 }

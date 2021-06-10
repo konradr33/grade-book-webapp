@@ -1,17 +1,20 @@
 <mat-card>
-  <mat-card-title>{{ grade.grade }}</mat-card-title>
+  <mat-card-title>
+    {{ grade.grade }}
+    <button *ngIf="showActions" [matMenuTriggerFor]="menu" mat-icon-button>
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </mat-card-title>
   <mat-card-subtitle>{{ grade.description }}</mat-card-subtitle>
   <mat-card-content>
     <span>Last updated: {{ grade.updatedAt | date }}</span>
     <span>Created: {{ grade.createdAt | date }}</span>
   </mat-card-content>
-
-  <mat-card-footer *ngIf="showActions">
-    <div class="buttons-wrapper">
-      <button mat-button [routerLink]="['/grades/', grade.ID, 'history']"><mat-icon>history</mat-icon> History</button>
-      <button (click)="onModifyClicked($event)" *ngIf="(authService.getUser$() | async)?.role === 'teacher'" mat-button>
-        <mat-icon>settings</mat-icon> Change
-      </button>
-    </div>
-  </mat-card-footer>
 </mat-card>
+
+<mat-menu #menu>
+  <button [routerLink]="['/grades/', grade.ID, 'history']" mat-menu-item><mat-icon>history</mat-icon> History</button>
+  <button (click)="onModifyClicked()" *ngIf="(authService.getUser$() | async)?.role === 'teacher'" mat-menu-item>
+    <mat-icon>settings</mat-icon> Edit
+  </button>
+</mat-menu>

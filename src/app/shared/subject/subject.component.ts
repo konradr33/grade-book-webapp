@@ -15,8 +15,11 @@ export class SubjectComponent {
 
   constructor(public readonly authService: AuthService) {}
 
-  onModifyClicked(event: MouseEvent) {
-    event.stopPropagation();
+  onModifyClicked() {
     this.modify.emit();
+  }
+
+  onMenuClicked(event: MouseEvent) {
+    event.stopPropagation();
   }
 }

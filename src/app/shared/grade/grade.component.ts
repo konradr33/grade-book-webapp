@@ -1,7 +1,8 @@
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, ViewChild } from '@angular/core';
 import { Component, Input, Output } from '@angular/core';
 import { Grade } from '../../../models/grade';
 import { AuthService } from '../../core/auth/auth.service';
+import { MatMenu } from '@angular/material/menu';
 
 @Component({
   selector: 'app-grade',
@@ -14,10 +15,11 @@ export class GradeComponent {
 
   @Output() modify: EventEmitter<void> = new EventEmitter<void>();
 
+  @ViewChild('menu') menu: MatMenu;
+
   constructor(public readonly authService: AuthService) {}
 
-  onModifyClicked(event: MouseEvent) {
-    event.stopPropagation();
+  onModifyClicked() {
     this.modify.emit();
   }
 }
