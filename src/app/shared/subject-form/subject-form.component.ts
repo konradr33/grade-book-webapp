@@ -29,9 +29,7 @@ export class SubjectFormComponent {
       students: ['', [Validators.required]],
     });
 
-    console.log('constructor');
     identityService.fetchAllStudents().subscribe((students: UserData[]) => {
-      console.log('subscribe', students);
       this.studentsOptions = students;
     });
 

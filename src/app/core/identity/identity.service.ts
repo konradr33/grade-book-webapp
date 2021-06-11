@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 import { AuthService } from '../auth/auth.service';
 import { UserData } from '../../../models/user-data';
@@ -14,22 +14,25 @@ export class IdentityService {
 
   public identities$: BehaviorSubject<Map<string, string>> = new BehaviorSubject(new Map());
 
+  public setUserData(username: string, data: UserDataDto): Observable<void> {
+    return this.http.post<void>(environment.apiContext + 'identity/' + username, data);
+  }
   public fetchAllStudents(): Observable<UserData[]> {
-    console.log('fetchAllStudents');
     return this.http.get<UserData[]>(environment.apiContext + 'identity/students');
   }
 
   public fetchIdentity(username: string): Observable<string> {
     return this.http.get<UserDataDto>(environment.apiContext + 'identity/' + username).pipe(
-      tap((x) => {
-        this.identities$[username] = x;
+      map((userData: UserDataDto) => {
+        return `${userData.name} ${userData.surname}`;
       }),
       catchError(() => {
-        return username;
+        return of(username);
       }),
-      map((userData: UserDataDto) => {
-        console.log('map', userData, `${userData.name} ${userData.surname}`);
-        return `${userData.name} ${userData.surname}`;
+      tap((x) => {
+        if (x) {
+          this.identities$[username] = x;
+        }
       }),
     );
   }

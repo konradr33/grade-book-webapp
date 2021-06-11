@@ -1,0 +1,29 @@
+<h1>User account data management</h1>
+
+<form [formGroup]="formGroup" (ngSubmit)="onFormSubmit()">
+  <mat-form-field>
+    <mat-label>Role</mat-label>
+    <mat-select required formControlName="role">
+      <mat-option value="student"> Student </mat-option>
+      <mat-option value="teacher"> Teacher </mat-option>
+      <mat-option value="admin"> Admin </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Username</mat-label>
+    <input matInput required formControlName="username" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Firstname</mat-label>
+    <input matInput required formControlName="firstname" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Surname</mat-label>
+    <input matInput required formControlName="surname" />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" [disabled]="!formGroup.valid" color="primary">Submit</button>
+</form>

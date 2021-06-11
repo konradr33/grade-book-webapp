@@ -42,18 +42,8 @@ export class GradesComponent implements OnInit {
 
       this.subjectService.getSubject(this.subjectID).subscribe((subject: Subject) => {
         this.subject = subject;
-        this.updateUserNames();
       });
     }
-  }
-
-  public updateUserNames(): void {
-    // this.userNames = {};
-    // for (const student of this.subject.students) {
-    //   this.identityService.getFullUsername(student).subscribe((fullName) => {
-    //     this.userNames[student] = fullName;
-    //   });
-    // }
   }
 
   public onGradeCreate(studentLogin: string) {
@@ -88,8 +78,8 @@ export class GradesComponent implements OnInit {
               this.grades = grades;
             });
           },
-          (error) => {
-            this.toastService.openSuccessToast({ title: 'Error', message: 'Could not update grade' });
+          () => {
+            this.toastService.openErrorToast({ title: 'Error', message: 'Could not update grade' });
           },
         );
       }

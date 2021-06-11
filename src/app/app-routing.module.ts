@@ -7,6 +7,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { AuthGuard } from './core/auth/auth.guard';
 import { GradeHistoryComponent } from './pages/grades/grade-history/grade-history.component';
 import { SubjectHistoryComponent } from './pages/subjects/subject-history/subject-history.component';
+import { ChangeDataComponent } from './pages/users/change-data/change-data.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'subjects/:id', component: GradesComponent, canActivate: [AuthGuard] },
   { path: 'subjects/:id/history', component: SubjectHistoryComponent, canActivate: [AuthGuard] },
   { path: 'grades/:id/history', component: GradeHistoryComponent, canActivate: [AuthGuard] },
+  { path: 'user-data', component: ChangeDataComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'login' },
 ];
 

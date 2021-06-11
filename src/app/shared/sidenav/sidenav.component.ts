@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../core/auth/auth.service';
 import { Router } from '@angular/router';
+
+import { AuthService } from '../../core/auth/auth.service';
+import { ToastService } from '../../core/toast/toast.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -8,9 +10,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./sidenav.component.scss'],
 })
 export class SidenavComponent {
-  constructor(public authService: AuthService, private router: Router) {}
+  constructor(public authService: AuthService, private router: Router, private toastService: ToastService) {}
 
   redirectTo(path: string) {
     this.router.navigate([path]);
+  }
+
+  onLogoutClicked(): void {
+    this.authService.logout();
+    this.toastService.openSuccessToast({ title: 'Success', message: 'Logged out' });
   }
 }

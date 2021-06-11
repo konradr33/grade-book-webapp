@@ -54,7 +54,6 @@ export class AuthService {
     localStorage.removeItem('jwt');
     localStorage.removeItem('user');
     this.router.navigate(['/login']);
-    this.toastService.openSuccessToast({ title: 'Success', message: 'Logged out' });
   }
 
   public isLoggedIn(): boolean {

@@ -6,13 +6,19 @@
         Home
       </div>
     </button>
-    <button mat-button (click)="redirectTo('subjects')">
+    <button mat-button (click)="redirectTo('subjects')" *ngIf="(authService.getUser$() | async)?.role !== 'admin'">
       <div class="button-content-wrapper">
         <mat-icon>subject</mat-icon>
         Subjects
       </div>
     </button>
-    <button mat-button (click)="authService.logout()">
+    <button mat-button (click)="redirectTo('user-data')" *ngIf="(authService.getUser$() | async)?.role === 'admin'">
+      <div class="button-content-wrapper">
+        <mat-icon>manage_accounts</mat-icon>
+        Users data
+      </div>
+    </button>
+    <button mat-button (click)="onLogoutClicked()">
       <div class="button-content-wrapper">
         <mat-icon>logout</mat-icon>
         Logout

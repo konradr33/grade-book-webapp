@@ -48,7 +48,7 @@ export class SubjectsComponent implements OnInit {
             });
           },
           (error) => {
-            this.toastService.openSuccessToast({ title: 'Error', message: 'Could not update Subject' });
+            this.toastService.openErrorToast({ title: 'Error', message: 'Could not update Subject' });
           },
         );
       }
@@ -68,7 +68,7 @@ export class SubjectsComponent implements OnInit {
             });
           },
           (error) => {
-            this.toastService.openSuccessToast({ title: 'Error', message: 'Could not update Subject' });
+            this.toastService.openErrorToast({ title: 'Error', message: 'Could not update Subject' });
           },
         );
       }
