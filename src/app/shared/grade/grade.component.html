@@ -7,6 +7,9 @@
   </mat-card-title>
   <mat-card-subtitle>{{ grade.description }}</mat-card-subtitle>
   <mat-card-content>
+    <span *ngIf="(authService.getUser$() | async)?.role === 'student'"
+      >Issued by: {{ (identityService.getFullUsernameDictionary(grade.issuer) | async)?.get(grade.issuer) }}</span
+    >
     <span>Last updated: {{ grade.updatedAt | date }}</span>
     <span>Created: {{ grade.createdAt | date }}</span>
   </mat-card-content>

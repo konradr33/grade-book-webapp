@@ -6,8 +6,11 @@
     </button>
   </mat-card-title>
   <mat-card-subtitle>{{ subject.description }}</mat-card-subtitle>
-  <mat-card-content
-    >participants: {{ subject.students.length }}
+  <mat-card-content>
+    participants: {{ subject.students.length }}
+    <span *ngIf="(authService.getUser$() | async)?.role === 'student'"
+      >Leader: {{ (identityService.getFullUsernameDictionary(subject.leader) | async)?.get(subject.leader) }}</span
+    >
     <span>Last updated: {{ subject.updatedAt | date }}</span>
     <span>Created: {{ subject.createdAt | date }}</span>
   </mat-card-content>

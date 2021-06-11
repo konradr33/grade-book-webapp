@@ -8,7 +8,9 @@
   <span class="example-spacer"></span>
 
   <ng-container *ngIf="authService.getUser$() | async as user">
-    <span>Logged as: {{ user?.username }}</span>
+    <span
+      >Logged as: {{ (identityService.getFullUsernameDictionary(user?.username) | async)?.get(user?.username) }}</span
+    >
     <button mat-icon-button (click)="authService.logout()">
       <mat-icon>logout</mat-icon>
     </button>

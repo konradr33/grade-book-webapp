@@ -8,7 +8,6 @@ import { getApiContext } from '../../utils/api-path';
 import { AuthService } from '../auth/auth.service';
 import { SubjectDto } from '../../../models/subject.dto';
 import { environment } from '../../../environments/environment';
-import { Grade } from '../../../models/grade';
 
 @Injectable()
 export class SubjectsService {

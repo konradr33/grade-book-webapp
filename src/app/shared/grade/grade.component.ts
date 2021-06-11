@@ -3,6 +3,7 @@ import { Component, Input, Output } from '@angular/core';
 import { Grade } from '../../../models/grade';
 import { AuthService } from '../../core/auth/auth.service';
 import { MatMenu } from '@angular/material/menu';
+import { IdentityService } from '../../core/identity/identity.service';
 
 @Component({
   selector: 'app-grade',
@@ -17,7 +18,7 @@ export class GradeComponent {
 
   @ViewChild('menu') menu: MatMenu;
 
-  constructor(public readonly authService: AuthService) {}
+  constructor(public readonly authService: AuthService, public identityService: IdentityService) {}
 
   onModifyClicked() {
     this.modify.emit();

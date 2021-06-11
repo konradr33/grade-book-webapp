@@ -9,6 +9,7 @@ import { AuthService } from '../../../core/auth/auth.service';
 import { ToastService } from '../../../core/toast/toast.service';
 import { Subject } from '../../../../models/subject';
 import { SubjectsService } from '../../../core/subjects/subjects.service';
+import { IdentityService } from '../../../core/identity/identity.service';
 
 @Component({
   selector: 'app-grades',
@@ -19,14 +20,16 @@ export class GradesComponent implements OnInit {
   public subjectID: string | null | undefined;
   public grades: Grade[];
   public subject: Subject;
+  public userNames = {};
 
   constructor(
     public authService: AuthService,
     private route: ActivatedRoute,
+    public dialog: MatDialog,
+    public identityService: IdentityService,
     private gradesService: GradesService,
     private subjectService: SubjectsService,
     private toastService: ToastService,
-    public dialog: MatDialog,
   ) {}
 
   ngOnInit() {
@@ -39,8 +42,18 @@ export class GradesComponent implements OnInit {
 
       this.subjectService.getSubject(this.subjectID).subscribe((subject: Subject) => {
         this.subject = subject;
+        this.updateUserNames();
       });
     }
+  }
+
+  public updateUserNames(): void {
+    // this.userNames = {};
+    // for (const student of this.subject.students) {
+    //   this.identityService.getFullUsername(student).subscribe((fullName) => {
+    //     this.userNames[student] = fullName;
+    //   });
+    // }
   }
 
   public onGradeCreate(studentLogin: string) {

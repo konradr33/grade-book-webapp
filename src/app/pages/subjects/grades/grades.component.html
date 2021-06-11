@@ -11,8 +11,8 @@
   <div *ngIf="(authService.getUser$() | async)?.role === 'teacher'">
     <h1>List of students grades</h1>
 
-    <div *ngFor="let student of subject.students">
-      <span class="student-name">{{ student }}</span>
+    <div *ngFor="let student of subject.students; index as i">
+      <span class="student-name">{{ (identityService.getFullUsernameDictionary(student) | async)?.get(student) }}</span>
 
       <button mat-icon-button color="primary" (click)="onGradeCreate(student)"><mat-icon>add</mat-icon></button>
 

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Subject } from '../../../models/subject';
 import { AuthService } from '../../core/auth/auth.service';
+import { IdentityService } from '../../core/identity/identity.service';
 
 @Component({
   selector: 'app-subject',
@@ -13,7 +14,7 @@ export class SubjectComponent {
 
   @Output() modify: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(public readonly authService: AuthService) {}
+  constructor(public identityService: IdentityService, public readonly authService: AuthService) {}
 
   onModifyClicked() {
     this.modify.emit();

@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Subject } from '../../../models/subject';
 import { SubjectDto } from '../../../models/subject.dto';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { IdentityService } from '../../core/identity/identity.service';
+import { UserData } from '../../../models/user-data';
 
 @Component({
   selector: 'app-subject-form',
@@ -14,12 +16,23 @@ export class SubjectFormComponent {
 
   public editMode: boolean = false;
   public formGroup: FormGroup;
+  public studentsOptions: UserData[] = [];
 
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: Subject) {
+  constructor(
+    private fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: Subject,
+    public identityService: IdentityService,
+  ) {
     this.formGroup = this.fb.group({
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
       students: ['', [Validators.required]],
+    });
+
+    console.log('constructor');
+    identityService.fetchAllStudents().subscribe((students: UserData[]) => {
+      console.log('subscribe', students);
+      this.studentsOptions = students;
     });
 
     if (!data) return;
