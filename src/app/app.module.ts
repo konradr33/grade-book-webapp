@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { PagesModule } from './pages/pages.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [AppComponent],

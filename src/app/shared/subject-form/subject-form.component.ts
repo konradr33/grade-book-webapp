@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject } from '../../../models/subject';
 import { SubjectDto } from '../../../models/subject.dto';

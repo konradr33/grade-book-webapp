@@ -1,5 +1,4 @@
-import { EventEmitter, ViewChild } from '@angular/core';
-import { Component, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { Grade } from '../../../models/grade';
 import { AuthService } from '../../core/auth/auth.service';
 import { MatMenu } from '@angular/material/menu';

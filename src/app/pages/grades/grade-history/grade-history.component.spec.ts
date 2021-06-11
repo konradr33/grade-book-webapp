@@ -8,9 +8,8 @@ describe('GradeHistoryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GradeHistoryComponent ]
-    })
-    .compileComponents();
+      declarations: [GradeHistoryComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

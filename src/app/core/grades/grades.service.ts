@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { Grade } from '../../../models/grade';
 import { getApiContext } from '../../utils/api-path';
@@ -42,6 +42,6 @@ export class GradesService {
   }
 
   public updateGrade(gradeId: string, grade: UpdateGradeDto): Observable<Grade> {
-    return this.http.put<Grade>(environment.apiContext+`teachers/grades/${gradeId}`, grade);
+    return this.http.put<Grade>(environment.apiContext + `teachers/grades/${gradeId}`, grade);
   }
 }
