@@ -44,4 +44,8 @@ export class GradesService {
   public updateGrade(gradeId: string, grade: UpdateGradeDto): Observable<Grade> {
     return this.http.put<Grade>(environment.apiContext + `teachers/grades/${gradeId}`, grade);
   }
+
+  public removeGrade(gradeId: string): Observable<boolean> {
+    return this.http.delete<boolean>(environment.apiContext + `teachers/grades/${gradeId}`);
+  }
 }

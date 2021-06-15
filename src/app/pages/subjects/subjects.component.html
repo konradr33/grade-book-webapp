@@ -5,10 +5,13 @@
   </button>
 </div>
 
+<mat-slide-toggle [(ngModel)]="hideRemoved" color="primary">Hide removed</mat-slide-toggle>
+
 <div class="subjects-wrapper">
   <app-subject
-    *ngFor="let subject of subjects"
+    *ngFor="let subject of filterSubjects()"
     (modify)="onSubjectChange(subject)"
+    (remove)="onRemoveClicked(subject)"
     (click)="onSubjectClicked(subject)"
     [subject]="subject"
   ></app-subject>

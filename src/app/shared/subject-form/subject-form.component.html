@@ -15,7 +15,7 @@
     <mat-label>Students</mat-label>
     <mat-select multiple required formControlName="students">
       <mat-option *ngFor="let student of studentsOptions" [value]="student.username">
-        {{ student.name }} {{ student.surname }}
+        {{ student.firstName }} {{ student.lastName }}
       </mat-option>
     </mat-select>
   </mat-form-field>

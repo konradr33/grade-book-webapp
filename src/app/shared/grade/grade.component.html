@@ -1,6 +1,7 @@
-<mat-card>
+<mat-card [ngClass]="{ removed: grade.removed }">
   <mat-card-title>
     {{ grade.grade }}
+    <ng-container *ngIf="grade.removed">(Removed)</ng-container>
     <button *ngIf="showActions" [matMenuTriggerFor]="menu" mat-icon-button>
       <mat-icon>more_vert</mat-icon>
     </button>
@@ -17,7 +18,8 @@
 
 <mat-menu #menu>
   <button [routerLink]="['/grades/', grade.ID, 'history']" mat-menu-item><mat-icon>history</mat-icon> History</button>
-  <button (click)="onModifyClicked()" *ngIf="(authService.getUser$() | async)?.role === 'teacher'" mat-menu-item>
-    <mat-icon>settings</mat-icon> Edit
-  </button>
+  <ng-container *ngIf="(authService.getUser$() | async)?.role === 'teacher'">
+    <button (click)="onModifyClicked()" mat-menu-item><mat-icon>settings</mat-icon> Edit</button>
+    <button (click)="onRemoveClicked()" *ngIf="!grade.removed" mat-menu-item><mat-icon>delete</mat-icon> Remove</button>
+  </ng-container>
 </mat-menu>

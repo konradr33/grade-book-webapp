@@ -20,6 +20,7 @@ export class GradesComponent implements OnInit {
   public subjectID: string | null | undefined;
   public grades: Grade[];
   public subject: Subject;
+  public hideRemoved: boolean = true;
   public userNames = {};
 
   constructor(
@@ -44,6 +45,13 @@ export class GradesComponent implements OnInit {
         this.subject = subject;
       });
     }
+  }
+
+  public filterGrades(grades: Grade[]): Grade[] {
+    if (this.hideRemoved) {
+      return grades.filter((grade: Grade) => !grade.removed);
+    }
+    return grades;
   }
 
   public onGradeCreate(studentLogin: string) {
@@ -92,5 +100,19 @@ export class GradesComponent implements OnInit {
       if (split.length < 4) return false;
       return split[2] === student;
     });
+  }
+
+  public onRemoveClicked(grade: Grade): void {
+    this.gradesService.removeGrade(grade.ID).subscribe(
+      () => {
+        this.toastService.openSuccessToast({ title: 'Success', message: 'Grade removed' });
+        this.gradesService.getGrades(this.subjectID).subscribe((grades: Grade[]) => {
+          this.grades = grades;
+        });
+      },
+      (error) => {
+        this.toastService.openErrorToast({ title: 'Error', message: 'Could not remove grade' });
+      },
+    );
   }
 }

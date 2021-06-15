@@ -57,6 +57,10 @@ export class SubjectsService {
     return this.http.put<Subject>(environment.apiContext + `teachers/subjects/${subject.ID}`, subject);
   }
 
+  public removeSubject(subjectID: string): Observable<boolean> {
+    return this.http.delete<boolean>(environment.apiContext + `teachers/subjects/${subjectID}`);
+  }
+
   getSubjectHistory(subjectID: string): Observable<Subject[]> {
     const role = this.authService.getCurrentRole();
     if (!role) {

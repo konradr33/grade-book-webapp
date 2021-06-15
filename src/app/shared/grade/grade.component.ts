@@ -14,6 +14,7 @@ export class GradeComponent {
   @Input() showActions: boolean = true;
 
   @Output() modify: EventEmitter<void> = new EventEmitter<void>();
+  @Output() remove: EventEmitter<void> = new EventEmitter<void>();
 
   @ViewChild('menu') menu: MatMenu;
 
@@ -21,5 +22,9 @@ export class GradeComponent {
 
   onModifyClicked() {
     this.modify.emit();
+  }
+
+  onRemoveClicked() {
+    this.remove.emit();
   }
 }

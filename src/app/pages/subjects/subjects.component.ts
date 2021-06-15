@@ -16,6 +16,7 @@ import { SubjectsService } from '../../core/subjects/subjects.service';
 })
 export class SubjectsComponent implements OnInit {
   public subjects: Subject[] = [];
+  public hideRemoved: boolean = true;
 
   constructor(
     public authService: AuthService,
@@ -29,6 +30,13 @@ export class SubjectsComponent implements OnInit {
     this.subjectsService.getUserSubjects().subscribe((subjects: Subject[]) => {
       this.subjects = subjects;
     });
+  }
+
+  public filterSubjects(): Subject[] {
+    if (this.hideRemoved) {
+      return this.subjects.filter((sub: Subject) => !sub.removed);
+    }
+    return this.subjects;
   }
 
   onSubjectClicked(subject: Subject) {
@@ -53,6 +61,20 @@ export class SubjectsComponent implements OnInit {
         );
       }
     });
+  }
+
+  public onRemoveClicked(subject: Subject): void {
+    this.subjectsService.removeSubject(subject.ID).subscribe(
+      () => {
+        this.toastService.openSuccessToast({ title: 'Success', message: 'Subject removed' });
+        this.subjectsService.getUserSubjects().subscribe((subjects: Subject[]) => {
+          this.subjects = subjects;
+        });
+      },
+      (error) => {
+        this.toastService.openErrorToast({ title: 'Error', message: 'Could not remove Subject' });
+      },
+    );
   }
 
   onSubjectCreate() {

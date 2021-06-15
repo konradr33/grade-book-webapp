@@ -13,6 +13,7 @@ export class SubjectComponent {
   @Input() showActions: boolean = true;
 
   @Output() modify: EventEmitter<void> = new EventEmitter<void>();
+  @Output() remove: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(public identityService: IdentityService, public readonly authService: AuthService) {}
 
@@ -22,5 +23,9 @@ export class SubjectComponent {
 
   onMenuClicked(event: MouseEvent) {
     event.stopPropagation();
+  }
+
+  onRemoveClicked() {
+    this.remove.emit();
   }
 }

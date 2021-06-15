@@ -1,8 +1,11 @@
 <ng-container *ngIf="grades && subject; else Loading">
   <div *ngIf="(authService.getUser$() | async)?.role === 'student'">
     <h1>List of your grades</h1>
+
+    <mat-slide-toggle [(ngModel)]="hideRemoved" color="primary">Hide removed</mat-slide-toggle>
+
     <div class="grades-wrapper">
-      <app-grade *ngFor="let grade of grades" [grade]="grade"></app-grade>
+      <app-grade *ngFor="let grade of filterGrades(grades)" [grade]="grade"></app-grade>
     </div>
 
     <div *ngIf="grades.length === 0">No grades in this subject or grades not available.</div>
@@ -11,13 +14,20 @@
   <div *ngIf="(authService.getUser$() | async)?.role === 'teacher'">
     <h1>List of students grades</h1>
 
-    <div *ngFor="let student of subject.students; index as i">
+    <mat-slide-toggle [(ngModel)]="hideRemoved" color="primary">Hide removed</mat-slide-toggle>
+
+    <div *ngFor="let student of subject.students">
       <span class="student-name">{{ (identityService.getFullUsernameDictionary(student) | async)?.get(student) }}</span>
 
       <button mat-icon-button color="primary" (click)="onGradeCreate(student)"><mat-icon>add</mat-icon></button>
 
       <div class="grades-wrapper" *ngIf="getStudentGrades(student) as students">
-        <app-grade (modify)="onGradeChange(grade)" *ngFor="let grade of students" [grade]="grade"></app-grade>
+        <app-grade
+          (modify)="onGradeChange(grade)"
+          (remove)="onRemoveClicked(grade)"
+          *ngFor="let grade of filterGrades(students)"
+          [grade]="grade"
+        ></app-grade>
 
         <div *ngIf="students.length === 0">No grades yet</div>
       </div>

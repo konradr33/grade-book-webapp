@@ -4,6 +4,10 @@ mat-card {
   background-color: $primary;
   color: white;
 
+  &.removed {
+    background-color: gray;
+  }
+
   mat-card-title {
     display: flex;
     justify-content: space-between;

@@ -26,8 +26,8 @@ export class ChangeDataComponent {
       this.identityService
         .setUserData(this.formGroup.value['username'], {
           role: this.formGroup.value.role,
-          name: this.formGroup.value.firstname,
-          surname: this.formGroup.value.surname,
+          firstName: this.formGroup.value.firstname,
+          lastName: this.formGroup.value.surname,
         })
         .subscribe(
           () => {

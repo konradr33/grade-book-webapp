@@ -10,18 +10,22 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { SubjectHistoryComponent } from './subject-history/subject-history.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [SubjectsComponent, GradesComponent, SubjectHistoryComponent],
   imports: [
     CommonModule,
     SharedModule,
+    FormsModule,
     MatCardModule,
     MatRippleModule,
     MatButtonModule,
     MatPaginatorModule,
     MatDialogModule,
     MatIconModule,
+    MatSlideToggleModule,
   ],
   exports: [SubjectsComponent],
 })

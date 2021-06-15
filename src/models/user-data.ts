@@ -1,11 +1,5 @@
-import { UserRole } from './user-role';
+import { UserDataDto } from './user-data.dto';
 
-export class UserData {
+export class UserData extends UserDataDto {
   public username: string;
-
-  public role: UserRole;
-
-  public name: string;
-
-  public surname: string;
 }

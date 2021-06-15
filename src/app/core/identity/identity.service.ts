@@ -24,7 +24,7 @@ export class IdentityService {
   public fetchIdentity(username: string): Observable<string> {
     return this.http.get<UserDataDto>(environment.apiContext + 'identity/' + username).pipe(
       map((userData: UserDataDto) => {
-        return `${userData.name} ${userData.surname}`;
+        return `${userData.firstName} ${userData.lastName}`;
       }),
       catchError(() => {
         return of(username);
