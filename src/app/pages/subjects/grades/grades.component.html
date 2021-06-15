@@ -1,6 +1,6 @@
 <ng-container *ngIf="grades && subject; else Loading">
   <div *ngIf="(authService.getUser$() | async)?.role === 'student'">
-    <h1>List of your grades</h1>
+    <h1>List of your grades {{ subject ? 'in ' + subject.name : '' }}</h1>
 
     <mat-slide-toggle [(ngModel)]="hideRemoved" color="primary">Hide removed</mat-slide-toggle>
 
@@ -12,7 +12,7 @@
   </div>
 
   <div *ngIf="(authService.getUser$() | async)?.role === 'teacher'">
-    <h1>List of students grades</h1>
+    <h1>List of students grades {{ subject ? 'in ' + subject.name : '' }}</h1>
 
     <mat-slide-toggle [(ngModel)]="hideRemoved" color="primary">Hide removed</mat-slide-toggle>
 
