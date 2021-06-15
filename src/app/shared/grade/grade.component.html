@@ -18,8 +18,8 @@
 
 <mat-menu #menu>
   <button [routerLink]="['/grades/', grade.ID, 'history']" mat-menu-item><mat-icon>history</mat-icon> History</button>
-  <ng-container *ngIf="(authService.getUser$() | async)?.role === 'teacher'">
+  <ng-container *ngIf="(authService.getUser$() | async)?.role === 'teacher' && !grade.removed">
     <button (click)="onModifyClicked()" mat-menu-item><mat-icon>settings</mat-icon> Edit</button>
-    <button (click)="onRemoveClicked()" *ngIf="!grade.removed" mat-menu-item><mat-icon>delete</mat-icon> Remove</button>
+    <button (click)="onRemoveClicked()" mat-menu-item><mat-icon>delete</mat-icon> Remove</button>
   </ng-container>
 </mat-menu>
