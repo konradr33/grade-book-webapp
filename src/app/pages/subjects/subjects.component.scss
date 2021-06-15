@@ -1,6 +1,6 @@
 .flex-container {
   display: flex;
-  align-items: baseline;
+  align-items: center;
 }
 
 mat-slide-toggle {
@@ -20,4 +20,5 @@ mat-slide-toggle {
 button,
 h1 {
   display: inline-block;
+  margin: 0;
 }
