@@ -1,8 +1,6 @@
 # Grade Book Webapp
 
-This project is an end-user web application, part of blockchain based Grade Book system.
-
-https://github.com/konradr33/grade-book-network
+This project is an end-user web application, part of blockchain based [Grade Book](https://github.com/konradr33/grade-book-network) system.
 
 ## Installation
 
